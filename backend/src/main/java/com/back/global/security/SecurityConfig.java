@@ -66,7 +66,7 @@ public class SecurityConfig {
 
                                             response.setStatus(401);
                                             response.getWriter().write(
-                                                    Ut.json.toString(
+                                                    Ut.json.INSTANCE.toString(
                                                             new RsData<Void>(
                                                                     "401-1",
                                                                     "로그인 후 이용해주세요."
@@ -81,7 +81,7 @@ public class SecurityConfig {
 
                                             response.setStatus(403);
                                             response.getWriter().write(
-                                                    Ut.json.toString(
+                                                    Ut.json.INSTANCE.toString(
                                                             new RsData<Void>(
                                                                     "403-1",
                                                                     "권한이 없습니다."

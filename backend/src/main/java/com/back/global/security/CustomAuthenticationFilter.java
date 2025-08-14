@@ -39,7 +39,7 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(rsData.statusCode());
             response.getWriter().write(
-                    Ut.json.toString(rsData)
+                    Ut.json.INSTANCE.toString(rsData, "default")
             );
         }
     }

@@ -14,7 +14,7 @@ public class DevInitData {
     @Bean
     ApplicationRunner devInitDataApplicationRunner() {
         return args -> {
-            Ut.cmd.runAsync(
+            Ut.cmd.INSTANCE.runAsync(
                     "npx{{DOT_CMD}}",
                     "--yes",
                     "--package", "typescript",

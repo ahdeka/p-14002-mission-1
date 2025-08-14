@@ -20,7 +20,7 @@ public class AuthTokenService {
         String username = member.getUsername();
         String name = member.getName();
 
-        return Ut.jwt.toString(
+        return Ut.jwt.INSTANCE.toString(
                 jwtSecretKey,
                 accessTokenExpirationSeconds,
                 Map.of("id", id, "username", username, "name", name)
@@ -28,7 +28,7 @@ public class AuthTokenService {
     }
 
     Map<String, Object> payload(String accessToken) {
-        Map<String, Object> parsedPayload = Ut.jwt.payload(jwtSecretKey, accessToken);
+        Map<String, Object> parsedPayload = Ut.jwt.INSTANCE.payload(jwtSecretKey, accessToken);
 
         if (parsedPayload == null) return null;
 
