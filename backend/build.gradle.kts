@@ -45,6 +45,8 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(kotlin("stdlib"))
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect") // JPA + Kotlin 조합에서 필요
 }
 
 tasks.withType<Test> {
