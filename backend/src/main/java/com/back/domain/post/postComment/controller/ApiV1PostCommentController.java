@@ -35,7 +35,7 @@ public class ApiV1PostCommentController {
     public List<PostCommentDto> getItems(
             @PathVariable int postId
     ) {
-        Post post = postService.findById(postId).get();
+        Post post = postService.findById(postId);
 
         return post
                 .getComments()
@@ -51,7 +51,7 @@ public class ApiV1PostCommentController {
             @PathVariable int postId,
             @PathVariable int id
     ) {
-        Post post = postService.findById(postId).get();
+        Post post = postService.findById(postId);
 
         PostComment postComment = post.findCommentById(id);
         if (postComment == null) {
@@ -70,7 +70,7 @@ public class ApiV1PostCommentController {
     ) {
         Member actor = rq.getActor();
 
-        Post post = postService.findById(postId).get();
+        Post post = postService.findById(postId);
 
         PostComment postComment = post.findCommentById(id);
         if (postComment == null) {
@@ -105,7 +105,7 @@ public class ApiV1PostCommentController {
     ) {
         Member actor = rq.getActor();
 
-        Post post = postService.findById(postId).get();
+        Post post = postService.findById(postId);
 
         PostComment postComment = post.findCommentById(id);
         if (postComment == null) {
@@ -138,7 +138,7 @@ public class ApiV1PostCommentController {
             @Valid @RequestBody PostCommentWriteReqBody reqBody
     ) {
         Member actor = rq.getActor();
-        Post post = postService.findById(postId).get();
+        Post post = postService.findById(postId);
 
         PostComment postComment = postService.writeComment(actor, post, reqBody.content);
 

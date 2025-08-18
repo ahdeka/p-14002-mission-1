@@ -6,29 +6,28 @@ import com.back.domain.post.post.repository.PostRepository
 import com.back.domain.post.postComment.entity.PostComment
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 @RequiredArgsConstructor
-class PostService {
-    private val postRepository: PostRepository? = null
+class PostService(
+    private val postRepository: PostRepository
+) {
 
     fun count(): Long {
-        return postRepository!!.count()
+        return postRepository.count()
     }
 
     fun write(author: Member, title: String?, content: String?): Post {
         val post = Post(author, title, content)
-
-        return postRepository!!.save<Post>(post)
+        return postRepository.save(post)
     }
 
-    fun findById(id: Int): Optional<Post?> {
-        return postRepository!!.findById(id)
+    fun findById(id: Int): Post? {
+        return postRepository.findById(id).orElse(null)
     }
 
-    fun findAll(): MutableList<Post?> {
-        return postRepository!!.findAll()
+    fun findAll(): List<Post> {
+        return postRepository.findAll()
     }
 
     fun modify(post: Post, title: String?, content: String?) {
@@ -48,14 +47,14 @@ class PostService {
     }
 
     fun delete(post: Post) {
-        postRepository!!.delete(post)
+        postRepository.delete(post)
     }
 
     fun findLatest(): Post? {
-        return postRepository!!.findFirstByOrderByIdDesc()
+        return postRepository.findFirstByOrderByIdDesc()
     }
 
     fun flush() {
-        postRepository!!.flush()
+        postRepository.flush()
     }
 }

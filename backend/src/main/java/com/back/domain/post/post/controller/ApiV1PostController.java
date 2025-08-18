@@ -6,6 +6,7 @@ import com.back.domain.post.post.dto.PostDto;
 import com.back.domain.post.post.dto.PostWithContentDto;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
+import com.back.global.exception.ServiceException;
 import com.back.global.rq.Rq;
 import com.back.global.rsData.RsData;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,7 +47,11 @@ public class ApiV1PostController {
     @Transactional(readOnly = true)
     @Operation(summary = "단건 조회")
     public PostWithContentDto getItem(@PathVariable int id) {
-        Post post = postService.findById(id).get();
+        Post post = postService.findById(id);
+
+        if (post == null) {
+            throw new ServiceException("404-1", "해당 데이터가 존재하지 않습니다.");
+        }
 
         return new PostWithContentDto(post);
     }
@@ -59,7 +64,7 @@ public class ApiV1PostController {
     ) {
         Member actor = rq.getActor();
 
-        Post post = postService.findById(id).get();
+        Post post = postService.findById(id);
 
         post.checkActorCanDelete(actor);
 
@@ -118,7 +123,7 @@ public class ApiV1PostController {
     ) {
         Member actor = rq.getActor();
 
-        Post post = postService.findById(id).get();
+        Post post = postService.findById(id);
 
         post.checkActorCanModify(actor);
 

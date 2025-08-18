@@ -371,7 +371,7 @@ public class ApiV1PostControllerTest {
                 )
                 .andDo(print());
 
-        Post post = postService.findById(id).get();
+        Post post = postService.findById(id);
 
         resultActions
                 .andExpect(handler().handlerType(ApiV1PostController.class))
