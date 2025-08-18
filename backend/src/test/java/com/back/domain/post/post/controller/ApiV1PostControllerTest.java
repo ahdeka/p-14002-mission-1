@@ -4,6 +4,7 @@ import com.back.domain.member.member.entity.Member;
 import com.back.domain.member.member.service.MemberService;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
+import com.back.global.exception.ServiceException;
 import jakarta.servlet.http.Cookie;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
@@ -55,7 +56,10 @@ public class ApiV1PostControllerTest {
                 )
                 .andDo(print());
 
-        Post post = postService.findLatest().get();
+        Post post = postService.findLatest();
+        if (post == null) {
+            throw new ServiceException("500-1", "최신 글이 존재하지 않습니다.");
+        }
 
         resultActions
                 .andExpect(handler().handlerType(ApiV1PostController.class))
