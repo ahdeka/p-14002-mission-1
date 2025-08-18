@@ -35,7 +35,7 @@ class Post(
         this.content = content
     }
 
-    fun addComment(author: Member?, content: String?): PostComment {
+    fun addComment(author: Member, content: String?): PostComment {
         val postComment = PostComment(author, this, content)
         comments.add(postComment)
         return postComment
