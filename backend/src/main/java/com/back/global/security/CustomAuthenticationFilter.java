@@ -104,8 +104,12 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
 
         if (member == null) {
             member = memberService
-                    .findByApiKey(apiKey)
-                    .orElseThrow(() -> new ServiceException("401-3", "API 키가 유효하지 않습니다."));
+                    .findByApiKey(apiKey);
+        }
+
+        // API 키가 존재하지 않거나 유효하지 않은 경우
+        if (member == null) {
+            throw new ServiceException("401-3", "API 키가 유효하지 않습니다.");
         }
 
         if (isAccessTokenExists && !isAccessTokenValid) {

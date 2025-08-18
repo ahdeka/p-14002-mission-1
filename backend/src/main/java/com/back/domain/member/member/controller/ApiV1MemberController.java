@@ -5,7 +5,6 @@ import com.back.domain.member.member.dto.MemberDto;
 import com.back.domain.member.member.dto.MemberWithUsernameDto;
 import com.back.domain.member.member.entity.Member;
 import com.back.domain.member.member.service.MemberService;
-import com.back.global.exception.ServiceException;
 import com.back.global.rq.Rq;
 import com.back.global.rsData.RsData;
 import io.swagger.v3.oas.annotations.Operation;
@@ -84,8 +83,7 @@ public class ApiV1MemberController {
     public RsData<MemberLoginResBody> login(
             @Valid @RequestBody MemberLoginReqBody reqBody
     ) {
-        Member member = memberService.findByUsername(reqBody.username())
-                .orElseThrow(() -> new ServiceException("401-1", "존재하지 않는 아이디입니다."));
+        Member member = memberService.findByUsername(reqBody.username());
 
         memberService.checkPassword(
                 member,

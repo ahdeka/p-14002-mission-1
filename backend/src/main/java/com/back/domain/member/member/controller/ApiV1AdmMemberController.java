@@ -41,7 +41,10 @@ public class ApiV1AdmMemberController {
     public MemberWithUsernameDto getItem(
             @PathVariable int id
     ) {
-        Member member = memberService.findById(id).get();
+        Member member = memberService.findById(id);
+        if (member == null) {
+            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
+        }
 
         return new MemberWithUsernameDto(member);
     }

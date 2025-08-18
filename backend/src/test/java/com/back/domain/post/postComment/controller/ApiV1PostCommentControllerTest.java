@@ -131,7 +131,7 @@ public class ApiV1PostCommentControllerTest {
         int postId = 1;
         int id = 1;
 
-        Member actor = memberService.findByUsername("user3").get();
+        Member actor = memberService.findByUsername("user3");
         String actorApiKey = actor.getApiKey();
 
         ResultActions resultActions = mvc
@@ -183,7 +183,7 @@ public class ApiV1PostCommentControllerTest {
         int postId = 1;
         int id = 1;
 
-        Member actor = memberService.findByUsername("user3").get();
+        Member actor = memberService.findByUsername("user3");
         String actorApiKey = actor.getApiKey();
 
         ResultActions resultActions = mvc
