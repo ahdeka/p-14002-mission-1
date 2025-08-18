@@ -54,7 +54,7 @@ public class ApiV1AdmMemberControllerTest {
                     .andExpect(jsonPath("$[%d].id".formatted(i)).value(member.getId()))
                     .andExpect(jsonPath("$[%d].createDate".formatted(i)).value(Matchers.startsWith(member.getCreateDate().toString().substring(0, 20))))
                     .andExpect(jsonPath("$[%d].modifyDate".formatted(i)).value(Matchers.startsWith(member.getModifyDate().toString().substring(0, 20))))
-                    .andExpect(jsonPath("$[%d].name".formatted(i)).value(member.getName()))
+                    .andExpect(jsonPath("$[%d].name".formatted(i)).value(member.getNickname()))
                     .andExpect(jsonPath("$[%d].username".formatted(i)).value(member.getUsername()))
                     .andExpect(jsonPath("$[%d].isAdmin".formatted(i)).value(member.isAdmin()));
         }
@@ -97,7 +97,7 @@ public class ApiV1AdmMemberControllerTest {
                 .andExpect(jsonPath("$.id").value(member.getId()))
                 .andExpect(jsonPath("$.createDate").value(Matchers.startsWith(member.getCreateDate().toString().substring(0, 20))))
                 .andExpect(jsonPath("$.modifyDate").value(Matchers.startsWith(member.getModifyDate().toString().substring(0, 20))))
-                .andExpect(jsonPath("$.name").value(member.getName()))
+                .andExpect(jsonPath("$.name").value(member.getNickname()))
                 .andExpect(jsonPath("$.username").value(member.getUsername()))
                 .andExpect(jsonPath("$.isAdmin").value(member.isAdmin()));
     }

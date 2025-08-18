@@ -55,7 +55,7 @@ public class ApiV1MemberController {
 
         return new RsData<>(
                 "201-1",
-                "%s님 환영합니다. 회원가입이 완료되었습니다.".formatted(member.getName()),
+                "%s님 환영합니다. 회원가입이 완료되었습니다.".formatted(member.getNickname()),
                 new MemberDto(member)
         );
     }
@@ -99,7 +99,7 @@ public class ApiV1MemberController {
 
         return new RsData<>(
                 "200-1",
-                "%s님 환영합니다.".formatted(member.getName()),
+                "%s님 환영합니다.".formatted(member.getNickname()),
                 new MemberLoginResBody(
                         new MemberDto(member),
                         member.getApiKey(),

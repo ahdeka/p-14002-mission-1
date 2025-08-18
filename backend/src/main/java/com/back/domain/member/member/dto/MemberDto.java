@@ -20,7 +20,7 @@ public class MemberDto {
         id = member.getId();
         createDate = member.getCreateDate();
         modifyDate = member.getModifyDate();
-        name = member.getName();
+        name = member.getNickname();
         admin = member.isAdmin();
         profileImageUrl = member.getProfileImgUrlOrDefault();
     }

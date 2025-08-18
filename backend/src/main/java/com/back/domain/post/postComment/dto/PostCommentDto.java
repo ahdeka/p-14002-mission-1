@@ -20,7 +20,7 @@ public class PostCommentDto {
         createDate = postComment.getCreateDate();
         modifyDate = postComment.getModifyDate();
         authorId = postComment.getAuthor().getId();
-        authorName = postComment.getAuthor().getName();
+        authorName = postComment.getAuthor().getNickname();
         postId = postComment.getPost().getId();
         content = postComment.getContent();
     }

@@ -19,7 +19,7 @@ public class PostDto {
         createDate = post.getCreateDate();
         modifyDate = post.getModifyDate();
         authorId = post.getAuthor().getId();
-        authorName = post.getAuthor().getName();
+        authorName = post.getAuthor().getNickname();
         title = post.getTitle();
     }
 }

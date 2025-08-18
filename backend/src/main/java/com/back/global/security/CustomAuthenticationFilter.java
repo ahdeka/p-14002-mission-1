@@ -119,7 +119,7 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
                 member.getId(),
                 member.getUsername(),
                 "",
-                member.getName(),
+                member.getNickname(),
                 member.getAuthorities()
         );
 

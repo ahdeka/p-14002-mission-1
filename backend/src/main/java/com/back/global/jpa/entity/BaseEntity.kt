@@ -9,17 +9,17 @@ import java.util.*
 
 @MappedSuperclass // 엔티티의 부모 클래스에는 이걸 달아야 한다.
 @EntityListeners(AuditingEntityListener::class)
-abstract class BaseEntity {
+open class BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id = 0
+    open var id = 0
 
     @CreatedDate
-    var createDate: LocalDateTime? = null
+    open var createDate: LocalDateTime? = null
 
     @LastModifiedDate
-    var modifyDate: LocalDateTime? = null
+    open var modifyDate: LocalDateTime? = null
 
     override fun equals(other: Any?): Boolean {
         if (other === this) return true
