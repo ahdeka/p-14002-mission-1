@@ -28,11 +28,10 @@ public class MemberService {
     }
 
     public Member join(String username, String password, String nickname, String profileImgUrl) {
-        memberRepository
-                .findByUsername(username)
-                .ifPresent(_member -> {
-                    throw new ServiceException("409-1", "이미 존재하는 아이디입니다.");
-                });
+        Member existingMember = memberRepository.findByUsername(username);
+        if (existingMember != null) {
+            throw new ServiceException("409-1", "이미 존재하는 아이디입니다.");
+        }
 
         password = (password != null && !password.isBlank()) ? passwordEncoder.encode(password) : null;
 
@@ -42,11 +41,11 @@ public class MemberService {
     }
 
     public Optional<Member> findByUsername(String username) {
-        return memberRepository.findByUsername(username);
+        return Optional.ofNullable(memberRepository.findByUsername(username));
     }
 
     public Optional<Member> findByApiKey(String apiKey) {
-        return memberRepository.findByApiKey(apiKey);
+        return Optional.ofNullable(memberRepository.findByApiKey(apiKey));
     }
 
     public String genAccessToken(Member member) {
