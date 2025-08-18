@@ -5,6 +5,7 @@ import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
 import com.back.domain.post.postComment.dto.PostCommentDto;
 import com.back.domain.post.postComment.entity.PostComment;
+import com.back.global.exception.ServiceException;
 import com.back.global.rq.Rq;
 import com.back.global.rsData.RsData;
 import io.swagger.v3.oas.annotations.Operation;
@@ -52,7 +53,10 @@ public class ApiV1PostCommentController {
     ) {
         Post post = postService.findById(postId).get();
 
-        PostComment postComment = post.findCommentById(id).get();
+        PostComment postComment = post.findCommentById(id);
+        if (postComment == null) {
+            throw new ServiceException("404", "댓글을 찾을 수 없습니다.");
+        }
 
         return new PostCommentDto(postComment);
     }
@@ -68,7 +72,10 @@ public class ApiV1PostCommentController {
 
         Post post = postService.findById(postId).get();
 
-        PostComment postComment = post.findCommentById(id).get();
+        PostComment postComment = post.findCommentById(id);
+        if (postComment == null) {
+            throw new ServiceException("404", "댓글을 찾을 수 없습니다.");
+        }
 
         postComment.checkActorCanDelete(actor);
 
@@ -100,7 +107,10 @@ public class ApiV1PostCommentController {
 
         Post post = postService.findById(postId).get();
 
-        PostComment postComment = post.findCommentById(id).get();
+        PostComment postComment = post.findCommentById(id);
+        if (postComment == null) {
+            throw new ServiceException("404", "댓글을 찾을 수 없습니다.");
+        }
 
         postComment.checkActorCanModify(actor);
 

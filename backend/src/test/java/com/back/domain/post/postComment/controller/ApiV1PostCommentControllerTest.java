@@ -5,6 +5,7 @@ import com.back.domain.member.member.service.MemberService;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.service.PostService;
 import com.back.domain.post.postComment.entity.PostComment;
+import com.back.global.exception.ServiceException;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,7 +52,10 @@ public class ApiV1PostCommentControllerTest {
                 .andDo(print());
 
         Post post = postService.findById(postId).get();
-        PostComment postComment = post.findCommentById(id).get();
+        PostComment postComment = post.findCommentById(id);
+        if (postComment == null) {
+            throw new ServiceException("404", "댓글을 찾을 수 없습니다.");
+        }
 
         resultActions
                 .andExpect(handler().handlerType(ApiV1PostCommentController.class))
