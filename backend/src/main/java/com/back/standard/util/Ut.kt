@@ -53,7 +53,9 @@ object Ut {
                     .build()
                     .parseSignedClaims(jwtStr)
                     .payload
-                claims
+
+                // Claims를 Map으로 변환
+                claims.toMap()
             } catch (e: Exception) {
                 null
             }

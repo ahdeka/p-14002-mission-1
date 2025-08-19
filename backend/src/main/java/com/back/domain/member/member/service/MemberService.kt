@@ -53,7 +53,7 @@ class MemberService(
     }
 
     fun payload(accessToken: String?): Map<String, Any>? {
-        return authTokenService.payload(accessToken)
+        return authTokenService.payload(accessToken) as Map<String, Any>?
     }
 
     fun findById(id: Int): Member? {
